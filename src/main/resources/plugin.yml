@@ -1,0 +1,14 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+author: manf
+main: ${main.class}
+depend: [TestSerialisation]
+softdepend: [TagAPI]
+commands:
+ frieden:
+ permissions:
+   PvPSuite.user.*:
+     description: Gives access to all User commands
+     default: true
+   
