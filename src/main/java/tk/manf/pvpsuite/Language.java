@@ -12,6 +12,7 @@ public enum Language {
     COMMAND_DECLINE("ablehnen"),
     COMMAND_DISBAND("auflösen"),
     COMMAND_LIST("list"),
+    CHAT_ANTI7("&6Deine Chatnachricht {0} wurde zu {1} geändert!"),
     DISBAND_OTHER("&6{0} hat den Frieden mit dir beendet."),
     DISBAND_SELF("&6Du hast den Frieden mit {0} beendet."),
     OFFER_ACCEPTED_SELF("&6{0} hat dein Angebot angenommen!"),

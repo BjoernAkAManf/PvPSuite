@@ -22,7 +22,6 @@ public class PeaceManager implements Listener {
     private PeaceConfig config;
     private final DualMap<String, String> offers;
     private TagAPIModule tagAPIModule;
-    private static final Logger logger = Logger.getLogger("Minecraft");
 
     private PeaceManager() {
         offers = new DualHashMap<String, String>(0);
@@ -42,7 +41,7 @@ public class PeaceManager implements Listener {
             }
             DataManager.getInstance().getSerialiser().save(config, false);
         } catch (Exception ex) {
-            logger.log(Level.SEVERE, null, ex);
+            plugin.getLogger().log(Level.SEVERE, null, ex);
         }
     }
 

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,10 +17,9 @@ import tk.manf.serialisation.ObjectSerialiser;
 public class DataManager implements Listener {
     private ObjectSerialiser serial;
     private final HashMap<String, PvPPlayer> players;
-    private static final Logger logger = Logger.getLogger("Minecraft");
-
+    
     private DataManager() {
-        players = new HashMap<String, PvPPlayer>();
+        players = new HashMap<String, PvPPlayer>(0);
     }
 
     public void initialise(JavaPlugin plugin) {
@@ -27,7 +27,7 @@ public class DataManager implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    public void load() {
+    public void load(Logger logger) {
         try {
             List<PvPPlayer> tmp = serial.load(PvPPlayer.class);
             for (PvPPlayer player : tmp) {
@@ -38,7 +38,7 @@ public class DataManager implements Listener {
         }
     }
 
-    public void save() {
+    public void save(Logger logger) {
         try {
             for (PvPPlayer player : players.values()) {
                 serial.save(player, false);
@@ -81,9 +81,7 @@ public class DataManager implements Listener {
     private void put(Player p, PvPPlayer player) {
         players.put(p.getName().toLowerCase(), player);
     }
-
-    public static DataManager getInstance() {
-        return instance;
-    }
+    
+    @Getter
     private static final DataManager instance = new DataManager();
 }

@@ -12,6 +12,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import tk.manf.pvpsuite.manager.ChatManager;
 import tk.manf.pvpsuite.manager.DataManager;
 import tk.manf.pvpsuite.manager.PeaceManager;
 
@@ -28,8 +29,9 @@ public class PvPSuitePlugin extends JavaPlugin {
                 Language.save();
             }
             DataManager.getInstance().initialise(this);
-            DataManager.getInstance().load();
+            DataManager.getInstance().load(getLogger());
             PeaceManager.getInstance().initialise(this);
+            ChatManager.getInstance().initialise(this);
         } catch (IOException ex) {
             Logger.getLogger(PvPSuitePlugin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -37,7 +39,7 @@ public class PvPSuitePlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        DataManager.getInstance().save();
+        DataManager.getInstance().save(getLogger());
     }
 
     @Override
